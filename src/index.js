@@ -30,20 +30,36 @@ client.on('interactionCreate', (interaction) => {
         interaction.reply("Hello There!");
     }
 
-    if (interaction.commandName === 'ping') {
+    if(interaction.commandName === 'ping') {
         interaction.reply("Pong!");
     }
 
     if(interaction.commandName === 'flip-a-coin') {
-        var coin = Math.random();
+        var coin = (Math.floor(Math.random() * 2) == 0);
+        var message;
 
-        if(coin == 0) {
-            interaction.reply("Heads");
+        if(coin) {
+            message = 'Heads';
+        }else {
+            message = 'Tails';
         }
 
-        if(coin == 1) {
-            interaction.reply("Tails");
-        }
+        interaction.reply(message);
+    }
+
+    if(interaction.commandName === 'add') {
+        const num1 = interaction.options.get('first-number').value;
+        const num2 = interaction.options.get('second-number').value;
+
+        var output = num1 + num2;
+        interaction.reply(`${num1} + ${num2} = ${output}.`);
+    }
+
+    if(interaction.commandName === 'roll') {
+        const diceValue = interaction.options.get('dice-type').value;
+        var dice = (Math.floor(Math.random() * diceValue) + 1)
+
+        interaction.reply(`You rolled ${dice}`)
     }
 });
 
