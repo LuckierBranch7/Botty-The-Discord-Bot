@@ -24,7 +24,7 @@ client.on("messageCreate", (msg) => {
         return;
     }
 
-    if(msg.content === 'hi botty') {f
+    if(msg.content === 'hi botty') {
         msg.reply('Hello There!')
     }
 });
