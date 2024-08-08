@@ -19,6 +19,34 @@ client.on('ready', (cnt) => {
     console.log(`${cnt.user.tag} is ready!`);
 });
 
+client.on('interactionCreate', (interaction) => {
+    // Check for Commands
+    if(!interaction.isChatInputCommand()) {
+        return;
+    }
+    
+    // Command Functions
+    if(interaction.commandName === 'hi') {
+        interaction.reply("Hello There!");
+    }
+
+    if (interaction.commandName === 'ping') {
+        interaction.reply("Pong!");
+    }
+
+    if(interaction.commandName === 'flip-a-coin') {
+        var coin = Math.random();
+
+        if(coin == 0) {
+            interaction.reply("Heads");
+        }
+
+        if(coin == 1) {
+            interaction.reply("Tails");
+        }
+    }
+});
+
 client.on("messageCreate", (msg) => {
     if(msg.author.bot) {
         return;

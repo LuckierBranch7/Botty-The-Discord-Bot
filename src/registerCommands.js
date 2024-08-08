@@ -4,8 +4,16 @@ require('dotenv').config();
 const commands = [
     {
         name: 'hi',
-        description: 'Says hi',
+        description: 'Says hi'
     },
+    {
+        name: 'ping',
+        description: 'Pong'
+    },
+    {
+        name: 'flip-a-coin',
+        description: 'Flips a coin'
+    }
 ];
 
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
