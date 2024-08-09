@@ -2,7 +2,7 @@ const { REST, Routes, ApplicationCommandOptionType } = require('discord.js');
 require('dotenv').config();
 
 const commands = [
-    // When you're done adding commands, run this file in the terminal using: node src/registerCommands.js
+// When you're done adding commands, run this file in the terminal using: node src/registerCommands.js
 
     // Add Commands Here ⬇️⬇️⬇️
     {
@@ -18,18 +18,42 @@ const commands = [
         description: 'Flips a coin'
     },
     {
-        name: 'add',
-        description: 'Adds two numbers',
+        name: 'calculate',
+        description: 'Calculate numbers',
         options: [
             {
+                name: 'how-to-calculate',
+                description: 'How will you calculate the numbers?',
+                type: ApplicationCommandOptionType.String,
+                required: true,
+                choices: [
+                    {
+                        name: 'add',
+                        value: 'a'
+                    },
+                    {
+                        name: 'subtract',
+                        value: 's'
+                    },
+                    {
+                        name: 'multiply',
+                        value: 'm'
+                    },
+                    {
+                        name: 'divide',
+                        value: 'd'
+                    }
+                ]
+            },
+            {
                 name: 'first-number',
-                description: 'The first number to add',
+                description: 'The first number',
                 type: ApplicationCommandOptionType.Number,
                 required: true
             },
             {
-                name: 'second-number',
-                description: 'The second number to add',
+                name: 'last-number',
+                description: 'The second number',
                 type: ApplicationCommandOptionType.Number,
                 required: true
             }
@@ -73,22 +97,34 @@ const commands = [
             }
         ]
     },
+    {
+        name: 'my-github',
+        description: 'Link to my github page'
+    },
+    {
+        name: 'buy-me-a-lemonade',
+        description: 'Link to my Ko-Fi page'
+    },
+    {
+        name: 'meme-me',
+        description: 'Sends a random meme'
+    }
 ];
 
 // If you don't have a .env file with the TOKEN variable, just replace process.env.TOKEN with your bot token
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
 (async () => {
-    try {
-        console.log("Initializing commands");
-        await rest.put(
-            // CLIENT_ID is the bot ID, not token
-            // GUILD_ID is the server ID
-            Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID),
-            { body: commands }
-        );
-        console.log("Commands are primed!");
-    } catch (error) {
-        console.log(`Error! ${error}`);
-    }
+try {
+console.log("Initializing commands");
+await rest.put(
+// CLIENT_ID is the bot ID, not token
+// GUILD_ID is the server ID
+Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID),
+{ body: commands }
+);
+console.log("Commands are primed!");
+} catch (error) {
+console.log(`Error! ${error}`);
+}
 })();
