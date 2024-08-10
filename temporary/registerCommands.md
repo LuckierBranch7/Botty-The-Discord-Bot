@@ -109,6 +109,7 @@ const commands = [
         name: 'meme-me',
         description: 'Sends a random meme'
     }
+
 ];
 
 // If you don't have a .env file with the TOKEN variable, just replace process.env.TOKEN with your bot token
